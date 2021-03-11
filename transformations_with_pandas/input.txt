@@ -1,0 +1,3 @@
+<name of the s3 bucket where the input parquet file is stored>
+<path to the parquet file (not including root bucket name)>
+<complete path of output s3 bucket, with s3:// in front>
