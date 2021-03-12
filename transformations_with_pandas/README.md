@@ -74,6 +74,7 @@ Using the example `input.txt` as input will download the parquet file from `s3:/
 
 ## Running the app
 
+* Make sure you're logged into AWS: `aws-azure-login`
 * Create a python virtual environment: `python3.8 -m venv venv`
 * Activate the virtual environment: `. venv/bin/activate`
 * Install the dependencies: `python3.8 -m pip install -r requirements.txt`
