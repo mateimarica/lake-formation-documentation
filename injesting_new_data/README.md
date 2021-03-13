@@ -2,7 +2,7 @@
 
 ## Importing new data using a Pandas script
 
-Lake Formation tables are registered to a particular S3 directory, not a file. So, for example, if a table is registered to the `s3://lake-formation/data/` and set to the parquet format, all `.parquet` files in that directory will part of table's data.
+Lake Formation tables are registered to a particular S3 directory, not a file. So, for example, if a table is registered to the `s3://lake-formation/data/` and set to the parquet format, all `.parquet` files in that directory will be a part of the table's data.
 
 In summary, to add new data to an existing table, upload the dataframe file(s) (such as `.parquet` format) to a table's S3 data location. Use the program described [here](../transformations_with_pandas) to upload a parquet file to S3.
 
