@@ -109,16 +109,16 @@ Partitions are defined by an S3 directory's name, a key-value pair. For example,
 
 	# Execute the query
 	response = client.start_query_execution(
-			QueryString=query,
-			QueryExecutionContext={
-					'Database': database_name,
-					'Catalog': 'AwsDataCatalog'
-			},
-			ResultConfiguration={
-					# This is the S3 location where you want to save the query results. 
-					# Can be anywhere in S3.
-					'OutputLocation': 's3://lakeformation_test_s3/query_results'
-			}
+		QueryString=query,
+		QueryExecutionContext={
+			'Database': database_name,
+			'Catalog': 'AwsDataCatalog'
+		},
+		ResultConfiguration={
+			# This is the S3 location where you want to save the query results. 
+			# Can be anywhere in S3.
+			'OutputLocation': 's3://lakeformation_test_s3/query_results'
+		}
 	)
 
 	print(response)
@@ -156,7 +156,7 @@ Partitions are defined by an S3 directory's name, a key-value pair. For example,
 
 When you query a table using boto3, it saves the output in a CSV file in the S3 directory we supply in the `OutputLocation` argument when executing a query. The CSV file is named `x.csv`, where `x` is the `QueryExecutionId` value in the dictionary returned by the Athena `client.start_query_execution` function.
 
-For now, it's easier to use the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) for testing. Enter the following SQL query:
+For now, it's easier to use the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) for testing. Enter and execute the following sample SQL query:
 
 ### [`select.sql`](./select.sql)
 ```sql
@@ -164,5 +164,7 @@ SELECT column1, year FROM "lakeformation_test"."partitioned_table"
 WHERE month = 3 AND year = 2021
 LIMIT 10;
 ```
+
+Tweak the above query where needed.
 
 Notice how the `year`, `month`, and `day` partitions are treated as columns when querying.
