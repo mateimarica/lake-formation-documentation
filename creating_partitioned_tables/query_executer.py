@@ -11,16 +11,16 @@ query = input("")
 
 # Execute the query
 response = client.start_query_execution(
-		QueryString=query,
-		QueryExecutionContext={
-				'Database': database_name,
-				'Catalog': 'AwsDataCatalog'
-		},
-		ResultConfiguration={
-				# This is the S3 location where you want to save the query results. 
-				# Can be anywhere in S3.
-				'OutputLocation': 's3://lakeformation_test_s3/query_results'
-		}
+	QueryString=query,
+	QueryExecutionContext={
+		'Database': database_name,
+		'Catalog': 'AwsDataCatalog'
+	},
+	ResultConfiguration={
+		# This is the S3 location where you want to save the query results. 
+		# Can be anywhere in S3.
+		'OutputLocation': 's3://lakeformation_test_s3/query_results'
+	}
 )
 
 print(response)
