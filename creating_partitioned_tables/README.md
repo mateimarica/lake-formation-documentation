@@ -131,7 +131,7 @@ Partitions are defined by an S3 directory's name, a key-value pair. For example,
 	* Create a python virtual environment: `python3.8 -m venv venv`
 	* Activate the virtual environment: `. venv/bin/activate`
 	* Install the dependencies: `python3.8 -m pip install -r requirements.txt`
-	* Run the app: `python3.8 query_executer.py < input.txt`
+	* Run the app: `python3.8 query_executer.py < create_table.sql`
 
 <br>
 
