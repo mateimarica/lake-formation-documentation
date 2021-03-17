@@ -1,0 +1,1 @@
+MSCK REPAIR TABLE partitioned_table;
