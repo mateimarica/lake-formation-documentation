@@ -42,13 +42,13 @@ A Glue job can be used to *extract, transform, and load* (ETL) a dataset. The ea
 
 <br>
 
-When running this job, you will likely get the error `An error occurred while calling o95.pyWriteDynamicFrame. Failed to load format with name parquet`. I'm not sure what causes this, but it's likely to do with lack of S3 permissions in the LakeFormationWorkflowRole. 
-
-In the CloudWatch logs, the following exception is visible: 
-
-`Caused by: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: Access Denied`
-
-So it's unclear as to which action the IAM role does not have permission for.
+> When running this job, you will likely get the error `An error occurred while calling o95.pyWriteDynamicFrame. Failed to load format with name parquet`. I'm not sure what causes this, but it's likely to do with lack of S3 permissions in the LakeFormationWorkflowRole. 
+>
+> In the CloudWatch logs, the following exception is visible: 
+>
+> `Caused by: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: Access Denied`
+>
+> So it's unclear as to which action the IAM role does not have permission for.
 
 <br>
 

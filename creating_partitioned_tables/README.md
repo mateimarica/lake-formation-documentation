@@ -92,46 +92,20 @@ Partitions are defined by an S3 directory's name, a key-value pair. For example,
 
 	<br>
 
-	This query can be entered manually in the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) or executed with a script such as:
+	This query can be entered manually in the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) or executed with a script:
 
-	### [`query_executer.py`](./query_executer.py)
-	```python
-	import boto3
+	
 
-	client = boto3.client('athena')
-
-	# Change these values to reflect your database & table
-	database_name = 'lakeformation_test'
-	table_name = 'partitioned_table'
-
-	# Get query from file, using redirection operator
-	query = input("")
-
-	# Execute the query
-	response = client.start_query_execution(
-		QueryString=query,
-		QueryExecutionContext={
-			'Database': database_name,
-			'Catalog': 'AwsDataCatalog'
-		},
-		ResultConfiguration={
-			# This is the S3 location where you want to save the query results. 
-			# Can be anywhere in S3.
-			'OutputLocation': 's3://lakeformation_test_s3/query_results'
-		}
-	)
-
-	print(response)
-	```
-
-	### Running `query_executer.py`
-	*Assuming you have the table creation SQL query in a file named `create_table.sql`*:
+	### Running [`query_executer.py`](../query_executer.py)
+	*Assuming you're in the `/creating_partitioned_tables/` directory*:
 
 	* Make sure you're logged into AWS: `aws-azure-login`
 	* Create a python virtual environment: `python3.8 -m venv venv`
 	* Activate the virtual environment: `. venv/bin/activate`
 	* Install the dependencies: `python3.8 -m pip install -r requirements.txt`
-	* Run the app: `python3.8 query_executer.py < create_table.sql`
+	* Run the app: `python3.8 ../query_executer.py create_table.sql`
+		* Enter the database name.
+		* Enter the S3 location to save the results to.
 
 <br>
 
@@ -142,21 +116,23 @@ Partitions are defined by an S3 directory's name, a key-value pair. For example,
 	MSCK REPAIR TABLE partitioned_table;
 	```
 
-	This query can be entered manually in the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) or executed with a script:
+	This query can be entered manually in the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) or executed with a script such as:
 
-	### Running `query_executer.py`
+	### Running [`query_executer.py`](../query_executer)
 
 	*Assuming you already activated and set up the virtual environment, as per the previous step:*
 
-	* Run the app: `python3.8 query_executer.py < load_partitions.sql`
+	* Run the app: `python3.8 ../query_executer.py load_partitions.sql`
+		* Enter the database name.
+		* Enter the S3 location to save the results to.
 
 <br>
 
 ## Querying the Partitioned Table
 
-When you query a table using boto3, it saves the output in a CSV file in the S3 directory we supply in the `OutputLocation` argument when executing a query. The CSV file is named `x.csv`, where `x` is the `QueryExecutionId` value in the dictionary returned by the Athena `client.start_query_execution` function.
 
-For now, it's easier to use the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) for testing. Enter and execute the following sample SQL query:
+
+For now, it's easier to use the [**Athena query editor**](https://console.aws.amazon.com/athena/home#query) for testing queries with results. See the [**using_data_from_tables**](../using_data_from_tables) page for getting query results with a script. Enter and execute the following sample SQL query:
 
 ### [`select.sql`](./select.sql)
 ```sql
@@ -168,3 +144,11 @@ LIMIT 10;
 Tweak the above query where needed.
 
 Notice how the `year`, `month`, and `day` partitions are treated as columns when querying.
+
+<br>
+
+---
+
+<br>
+
+> **NOTE:**  When you query a table using boto3, it saves the output in a CSV file in the S3 directory we supply in the `OutputLocation` argument when executing a query. The CSV file is named `x.csv`, where `x` is the `QueryExecutionId` value in the dictionary returned by the Athena `client.start_query_execution` function.
