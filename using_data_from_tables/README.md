@@ -100,7 +100,7 @@ analysis_start_time     month
 $ 
 ```
 
-As we can see, the data came out as predicted. We querying only the data when `month = 3`, so that's all we got. 
+As we can see, the data came out as predicted. We queried data from when `month = 3`, so that's all we got. 
 
 > **Note:** The first row of the JSON file contains the names of the columns.
 
